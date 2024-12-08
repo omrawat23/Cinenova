@@ -104,7 +104,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="flex h-screen bg-gradient-to-br from-[#13141A] to-[#1a1c25] text-white overflow-hidden">
       {/* Desktop Sidebar */}
       <div className="hidden md:flex md:flex-col md:w-64 md:fixed md:inset-y-0 p-6">
-        <h2 className="sparkly-text mb-10">CineNova</h2>
+        <h2 className="sparkly-text mb-10 mt-[-8px]">CineNova</h2>
 
         <div className="flex flex-col space-y-2">
           <NavigationLinks />
@@ -206,7 +206,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       )}
 
       {/* Main Content Area */}
-      <div className="flex flex-col flex-1 md:ml-64">
+      <div className="flex flex-col flex-1 md:ml-64 mt-[-8px]">
         {/* Desktop Header */}
         <header className="hidden md:flex items-center justify-between backdrop-blur-lg p-4 md:p-0 md:m-6 md:ml-5">
         <div className="relative w-64" onClick={toggleSearch}>

@@ -45,15 +45,15 @@ export default function VideoPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
   useEffect(() => {
+    const apiKey = import.meta.env.VITE_TMDB_API_KEY
     const fetchMovieData = async () => {
       try {
         const options = {
           method: 'GET',
           headers: {
             accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZDg2MjI4NzlhZmUxOGY5OTc2NDJmOWYzNzc3N2FjMiIsIm5iZiI6MTczMDY3MjA3MS4zNjUwMzcsInN1YiI6IjY3MjdmNDA0NTU1ZTNlZmM4OWMzMmY5NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7ST0b4zGR7UynUdSV5ANEKDjpzrxh9nitsPrz8cqx6w",
-          },
+            Authorization: `Bearer ${apiKey}`,
+      },
         }
 
         const [movieRes, castRes, similarRes, imagesRes] = await Promise.all([

@@ -3,7 +3,7 @@ import Home from "@/pages/Home"; // Page components
 import Layout from './Layout';
 import TvSeries from './pages/TvSeries';
 import Movies from './pages/Movies';
-import VideoPage from './components/VideoPage';
+import VideoPage from './components/MovieVideoPage';
 import TvVideoPage from './components/TvVideoPage';
 
 const AppRouter = () => {

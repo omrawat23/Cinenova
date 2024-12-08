@@ -1,4 +1,4 @@
-import TvSeriesPage from '@/components/TvSeriesPage'
+import TvSeriesPage from '@/components/TvSeriesHomePage'
 
 const TvSeries = () => {
   return (

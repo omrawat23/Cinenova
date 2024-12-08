@@ -16,21 +16,21 @@ interface Movie {
 export default function Component() {
   const [movies, setMovies] = useState<Movie[]>([])
   const [loading, setLoading] = useState(true)
-  const [currentMovieIndex, setCurrentMovieIndex] = useState(0)
+  const [currentMovieIndex, setCurrentMovieIndex] = useState(1)
   const [imageLoaded, setImageLoaded] = useState(false)
   const [showContent, setShowContent] = useState(false)
   const navigate = useNavigate()
   const [isPaused, setIsPaused] = useState(false)
 
   useEffect(() => {
+    const apiKey = import.meta.env.VITE_TMDB_API_KEY
     const fetchMovies = async () => {
       const options = {
         method: 'GET',
         url: 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=2',
         headers: {
             accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZDg2MjI4NzlhZmUxOGY5OTc2NDJmOWYzNzc3N2FjMiIsIm5iZiI6MTczMDY3MjA3MS4zNjUwMzcsInN1YiI6IjY3MjdmNDA0NTU1ZTNlZmM4OWMzMmY5NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7ST0b4zGR7UynUdSV5ANEKDjpzrxh9nitsPrz8cqx6w",
+            Authorization: `Bearer ${apiKey}`,
           },
       };
   
@@ -90,7 +90,7 @@ export default function Component() {
 
   return (
     <div 
-      className="relative w-full h-[300px] sm:h-[400px] md:h-[400px] lg:h-[470px] overflow-hidden rounded-2xl sm:rounded-3xl"
+      className="relative w-full h-[300px] sm:h-[400px] md:h-[400px] lg:h-[450px] overflow-hidden rounded-2xl sm:rounded-3xl"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >

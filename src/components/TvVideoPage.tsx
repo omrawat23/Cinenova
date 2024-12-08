@@ -59,6 +59,7 @@ export default function Component() {
   const [selectedSeason, setSelectedSeason] = useState<number>(1)
   const [selectedEpisode, setSelectedEpisode] = useState<number>(1)
   const [episodes, setEpisodes] = useState<Episode[]>([])
+  const apiKey = import.meta.env.VITE_TMDB_API_KEY
 
   useEffect(() => {
     const fetchTvData = async () => {
@@ -67,8 +68,8 @@ export default function Component() {
           method: 'GET',
           headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZDg2MjI4NzlhZmUxOGY5OTc2NDJmOWYzNzc3N2FjMiIsIm5iZiI6MTczMDY3MjA3MS4zNjUwMzcsInN1YiI6IjY3MjdmNDA0NTU1ZTNlZmM4OWMzMmY5NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7ST0b4zGR7UynUdSV5ANEKDjpzrxh9nitsPrz8cqx6w'
-          }
+            Authorization: `Bearer ${apiKey}`,
+          },
         }
 
         const [tvRes, castRes, similarRes, imagesRes] = await Promise.all([
@@ -106,8 +107,8 @@ export default function Component() {
           method: 'GET',
           headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZDg2MjI4NzlhZmUxOGY5OTc2NDJmOWYzNzc3N2FjMiIsIm5iZiI6MTczMDY3MjA3MS4zNjUwMzcsInN1YiI6IjY3MjdmNDA0NTU1ZTNlZmM4OWMzMmY5NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7ST0b4zGR7UynUdSV5ANEKDjpzrxh9nitsPrz8cqx6w'
-          }
+            Authorization: `Bearer ${apiKey}`,
+          },
         }
         const res = await fetch(`https://api.themoviedb.org/3/tv/${movieId}/season/${selectedSeason}?language=en-US`, options)
         const data = await res.json()

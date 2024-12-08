@@ -23,6 +23,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearchResults }) => {
     }
 
     try {
+      const apiKey = import.meta.env.VITE_TMDB_API_KEY
       const response = await axios.get<SearchResponse>(
         `https://api.themoviedb.org/3/search/multi`,
         {
@@ -34,8 +35,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearchResults }) => {
           },
           headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZDg2MjI4NzlhZmUxOGY5OTc2NDJmOWYzNzc3N2FjMiIsIm5iZiI6MTczMDY3MjA3MS4zNjUwMzcsInN1YiI6IjY3MjdmNDA0NTU1ZTNlZmM4OWMzMmY5NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7ST0b4zGR7UynUdSV5ANEKDjpzrxh9nitsPrz8cqx6w'
-          }
+            Authorization: `Bearer ${apiKey}`,
+      },
         }
       );
       onSearchResults(response.data.results);

@@ -30,13 +30,13 @@ const TvSeriesPage: React.FC = () => {
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
 
   const fetchMovies = useCallback(async (page: number) => {
+    const apiKey = import.meta.env.VITE_TMDB_API_KEY
     const options = {
       method: "GET",
       url: `https://api.themoviedb.org/3/trending/tv/day?language=en-US&page=${page}`,
       headers: {
         accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZDg2MjI4NzlhZmUxOGY5OTc2NDJmOWYzNzc3N2FjMiIsIm5iZiI6MTczMDY3MjA3MS4zNjUwMzcsInN1YiI6IjY3MjdmNDA0NTU1ZTNlZmM4OWMzMmY5NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7ST0b4zGR7UynUdSV5ANEKDjpzrxh9nitsPrz8cqx6w",
+        Authorization: `Bearer ${apiKey}`,
       },
     }
 
@@ -69,18 +69,38 @@ const TvSeriesPage: React.FC = () => {
   }
 
   return (
-    <div className="w-full px-4 py-4">
+    <div className="w-full px-4 mt-3">
       <BannerTv />
       <div className="max-w-8xl mt-4 mx-auto">
-        <h1 className="text-3xl font-bold mb-4 ml-2 text-white">Popular Tv Series</h1>
+      <div className="flex items-center justify-between mb-4 ml-2">
+          <h2 className="text-3xl font-bold text-white">Popular Tv Shows</h2>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              className="md:flex bg-white/10 backdrop-blur-md hover:bg-white/20 border-0 rounded-full w-10 h-10"
+              onClick={scrollPrev}
+            >
+              <ChevronLeft className="h-5 w-5 text-white" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="md:flex bg-white/10 backdrop-blur-md hover:bg-white/20 border-0 rounded-full w-10 h-10"
+              onClick={scrollNext}
+            >
+              <ChevronRight className="h-5 w-5 text-white" />
+            </Button>
+          </div>
+        </div>
         <div className="relative">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex gap-4 md:gap-5 lg:gap-6 pl-4">
               {movies.map((movie) => (
                 <div
-                  key={movie.id}
-  className="flex-[0_0_80%] min-w-0 sm:flex-[0_0_40%] md:flex-[0_0_40%] lg:flex-[0_0_25%] xl:flex-[0_0_18%]"
-                >
+                key={movie.id}
+                className="flex-[0_0_50%] min-w-0 sm:flex-[0_0_20%] md:flex-[0_0_30%] lg:flex-[0_0_20%] xl:flex-[0_0_14%]"
+              >
                   <Card
                     className="overflow-hidden cursor-pointer group relative bg-transparent border-0"
                     onClick={() => handleMovieClick(movie.id)}
@@ -107,24 +127,11 @@ const TvSeriesPage: React.FC = () => {
               ))}
             </div>
           </div>
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 hidden md:flex bg-white/10 backdrop-blur-md hover:bg-white/20 border-0 rounded-full w-12 h-12"
-            onClick={scrollPrev}
-          >
-            <ChevronLeft className="h-6 w-6 text-white" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 hidden md:flex bg-white/10 backdrop-blur-md hover:bg-white/20 border-0 rounded-full w-12 h-12"
-            onClick={scrollNext}
-          >
-            <ChevronRight className="h-6 w-6 text-white" />
-          </Button>
         </div>
       </div>
+      <p className="hidden sm:flex justify-center items-center mt-6 mb-6 text-gray-600">
+  This site does not store any files on the server; we only link to the media hosted on 3rd party services.
+</p>
     </div>
   )
 };

@@ -1,4 +1,4 @@
-import MoviesPage from '@/components/MoviesPage'
+import MoviesPage from '@/components/MoviesHomePage'
 
 const Home = () => {
   return (
