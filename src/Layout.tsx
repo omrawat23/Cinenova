@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from './components/ui/button';
 import { Input } from './components/ui/input';
+import { Analytics } from "@vercel/analytics/react"
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -289,6 +290,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {/* Main Content */}
         <main className="flex-1 overflow-y-auto scrollbar-hide mt-20 md:mt-[-16px]">
           {children}
+          <Analytics/>
         </main>
       </div>
     </div>
